@@ -580,3 +580,42 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+
+.social-follow-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.social-follow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.72rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(24, 80, 160, 0.14);
+    background: rgba(255, 255, 255, 0.84);
+    color: #1850a0;
+    font-weight: 700;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.social-follow-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(24, 80, 160, 0.12);
+    border-color: rgba(24, 80, 160, 0.24);
+}
+
+.social-follow-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex: 0 0 auto;
+}
+
+.social-follow-btn.is-disabled {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+}
