@@ -429,3 +429,93 @@ p {
 .source-list li {
     margin-bottom: 0.45rem;
 }
+
+
+.mini-checklist {
+    margin: 0.85rem 0 0;
+    padding-left: 1.15rem;
+}
+
+.mini-checklist li {
+    margin-bottom: 0.45rem;
+}
+
+.lead-resource-note {
+    margin-top: 0.8rem;
+    color: #5a7198;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.checklist-page .page-main {
+    padding: 2rem 0 4rem;
+}
+
+.checklist-shell {
+    max-width: 860px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(24,80,160,0.12);
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0 24px 60px rgba(24,80,160,0.10);
+}
+
+.checklist-shell h1 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.02;
+    margin-bottom: 0.8rem;
+}
+
+.checklist-shell p,
+.checklist-shell li {
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+.checklist-intro {
+    color: #244b88;
+    max-width: 62ch;
+}
+
+.checklist-section {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(24,80,160,0.08);
+}
+
+.checklist-section h2 {
+    font-size: 1.3rem;
+    line-height: 1.18;
+    margin-bottom: 0.6rem;
+}
+
+.checklist-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.35rem;
+}
+
+.checklist-print {
+    background: transparent;
+    border: 1px solid rgba(24,80,160,0.16);
+    color: #1850a0;
+}
+
+@media print {
+    .site-header, .site-footer, .checklist-actions {
+        display: none !important;
+    }
+
+    .checklist-page .page-main {
+        padding: 0;
+    }
+
+    .checklist-shell {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: none;
+    }
+}
