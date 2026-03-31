@@ -22,6 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    document.querySelectorAll('.lead-intake-form').forEach((form) => {
+        const feedback = form.querySelector('.lead-intake-feedback');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const data = new FormData(form);
+            const nombre = (data.get('nombre') || '').toString().trim();
+            const tema = (data.get('tema') || '').toString().trim();
+            const horario = (data.get('horario') || '').toString().trim();
+            const canal = (data.get('canal') || '').toString().trim();
+            const mensaje = (data.get('mensaje') || '').toString().trim();
+            if (!nombre || !tema || !mensaje) {
+                if (feedback) feedback.textContent = 'Completa tu nombre, el tema y una breve descripcion para preparar mejor el mensaje.';
+                return;
+            }
+            const text = [
+                'Hola, quiero una consulta con DYADLAW.',
+                `Nombre: ${nombre}`,
+                `Tema: ${tema}`,
+                horario ? `Mejor horario: ${horario}` : '',
+                canal ? `Canal preferido: ${canal}` : '',
+                `Situacion: ${mensaje}`,
+                `Pagina: ${window.location.href}`
+            ].filter(Boolean).join('\n');
+            const waUrl = `https://wa.me/18584801077?text=${encodeURIComponent(text)}`;
+            if (feedback) feedback.textContent = 'Abriendo WhatsApp con tu mensaje prellenado.';
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+    });
+
     document.querySelectorAll('.comments-panel').forEach((panel) => {
         const thread = panel.dataset.commentThread;
         const form = panel.querySelector('.comment-form');
