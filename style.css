@@ -408,6 +408,15 @@ h1 {
   margin: 0.5rem 0 0.8rem;
 }
 
+.featured-support {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 .post-layout {
   padding: 3rem 0;
 }
