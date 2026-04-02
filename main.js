@@ -429,7 +429,7 @@ function dedupeArticleImages() {
   const sidebarSrc = sidebarImg.currentSrc || sidebarImg.getAttribute("src") || "";
   if (!heroSrc || !sidebarSrc) return;
 
-  const normalize = src => {
+  const normalizePath = src => {
     try {
       return new URL(src, window.location.href).pathname.toLowerCase();
     } catch {
@@ -437,7 +437,22 @@ function dedupeArticleImages() {
     }
   };
 
-  if (normalize(heroSrc) === normalize(sidebarSrc)) {
+  const toAssetKey = src => {
+    const path = normalizePath(src);
+    const filename = path.split("/").pop() || path;
+    return filename
+      .replace(/\.(jpe?g|png|webp|gif|avif)$/i, "")
+      .replace(/-\d+x\d+$/i, "")
+      .replace(/-scaled$/i, "");
+  };
+
+  const heroPath = normalizePath(heroSrc);
+  const sidebarPath = normalizePath(sidebarSrc);
+  const heroKey = toAssetKey(heroSrc);
+  const sidebarKey = toAssetKey(sidebarSrc);
+
+  // Remove the sidebar image when it is the same asset (including resized/conversion variants).
+  if (heroPath === sidebarPath || (heroKey && heroKey === sidebarKey)) {
     sidebarImg.remove();
   }
 }
