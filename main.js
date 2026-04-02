@@ -64,23 +64,23 @@ function attachEngagementSection() {
     <h3>Compartir este contenido</h3>
     <div class="share-actions">
       <button class="share-btn" data-share="facebook" type="button" aria-label="Compartir en Facebook" title="Facebook">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.6 1.7-1.6h1.3V4.8c-.2 0-1-.1-2-.1-2.6 0-4.3 1.5-4.3 4.4V11H8v3h2.3v7h3.2z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.03 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.98h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
         <span class="sr-only">Facebook</span>
       </button>
       <button class="share-btn" data-share="instagram" type="button" aria-label="Compartir en Instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zm9.8 1.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm9.2 1.55a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1zM12 6.85A5.15 5.15 0 1 1 6.85 12 5.16 5.16 0 0 1 12 6.85zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.35 3.35 0 0 0 12 8.65z"/></svg>
         <span class="sr-only">Instagram</span>
       </button>
       <button class="share-btn" data-share="tiktok" type="button" aria-label="Compartir en TikTok" title="TikTok">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 3h2.7c.3 1.7 1.4 3 3 3.3v2.8a7 7 0 0 1-3-1.1v6.1a5 5 0 1 1-4.2-4.9v2.9a2.2 2.2 0 1 0 1.5 2.1V3z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.05 2h2.73c.24 1.42 1.14 2.7 2.42 3.39.8.45 1.72.69 2.67.72v2.9c-1.59-.05-3.16-.45-4.54-1.24v7.18a6 6 0 1 1-5.14-5.94v3c-.45-.15-.93-.18-1.4-.08a3.05 3.05 0 1 0 3.66 2.99V2z"/></svg>
         <span class="sr-only">TikTok</span>
       </button>
       <button class="share-btn" data-share="youtube" type="button" aria-label="Compartir en YouTube" title="YouTube">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.3a2.8 2.8 0 0 0-2-2C17.8 5 12 5 12 5s-5.8 0-7.6.3a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.7 2.8 2.8 0 0 0 2 2c1.8.3 7.6.3 7.6.3s5.8 0 7.6-.3a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.7zM10 15.5v-7L16 12l-6 3.5z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 7.2a3.03 3.03 0 0 0-2.13-2.14C19.45 4.5 12 4.5 12 4.5s-7.45 0-9.37.56A3.03 3.03 0 0 0 .5 7.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 4.8 3.03 3.03 0 0 0 2.13 2.14c1.92.56 9.37.56 9.37.56s7.45 0 9.37-.56a3.03 3.03 0 0 0 2.13-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-4.8zM9.6 15.58V8.42L15.86 12 9.6 15.58z"/></svg>
         <span class="sr-only">YouTube</span>
       </button>
       <button class="share-btn" data-share="copy" type="button" aria-label="Copiar enlace" title="Copiar enlace">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2zm-4 0V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2h-2V5H7v4H5z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.59 13.41a1.99 1.99 0 0 1 0-2.82l3.18-3.18a2 2 0 1 1 2.83 2.83l-1.06 1.06 1.41 1.41 1.06-1.06a4 4 0 1 0-5.66-5.66l-3.18 3.18a4 4 0 0 0 0 5.66l.35.35 1.41-1.41-.34-.36zm2.82-2.82-1.41-1.41-4.95 4.95a4 4 0 1 0 5.66 5.66l3.18-3.18a4 4 0 0 0 0-5.66l-.35-.35-1.41 1.41.35.35a2 2 0 0 1 0 2.83l-3.18 3.18a2 2 0 1 1-2.83-2.83l4.94-4.95z"/></svg>
         <span class="sr-only">Copiar enlace</span>
       </button>
     </div>
@@ -95,7 +95,6 @@ function attachEngagementSection() {
     "blog-itin-myths.html"
   ]);
 
-  wrap.appendChild(share);
   if (commentEnabledPages.has(page)) {
     const comments = document.createElement("article");
     comments.className = "comments-panel";
@@ -115,6 +114,7 @@ function attachEngagementSection() {
     `;
     wrap.appendChild(comments);
   }
+  wrap.appendChild(share);
   main.appendChild(wrap);
 
   const pageUrl = window.location.href;

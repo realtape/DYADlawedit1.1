@@ -844,43 +844,80 @@ h1 {
   height: 44px;
   border: 1px solid #bfd0ee;
   border-radius: 999px;
-  background: #f4f8ff;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f8ff 100%);
   color: #25539b;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease;
 }
 
 .share-btn svg {
   width: 20px;
   height: 20px;
   fill: currentColor;
+  position: relative;
+  z-index: 1;
 }
 
 .share-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(18, 53, 111, 0.16);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 24px rgba(18, 53, 111, 0.18);
+}
+
+.share-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.share-btn:hover::before {
+  opacity: 1;
 }
 
 .share-btn[data-share="facebook"] {
   color: #1877f2;
 }
 
+.share-btn[data-share="facebook"]::before {
+  background: radial-gradient(circle at 50% 35%, rgba(24, 119, 242, 0.2), rgba(24, 119, 242, 0.05) 70%);
+}
+
 .share-btn[data-share="instagram"] {
   color: #d62976;
+}
+
+.share-btn[data-share="instagram"]::before {
+  background: radial-gradient(circle at 50% 35%, rgba(214, 41, 118, 0.18), rgba(245, 133, 41, 0.12) 55%, rgba(255,255,255,0) 75%);
 }
 
 .share-btn[data-share="tiktok"] {
   color: #111111;
 }
 
+.share-btn[data-share="tiktok"]::before {
+  background: radial-gradient(circle at 38% 35%, rgba(37, 244, 238, 0.22), rgba(254, 44, 85, 0.16) 48%, rgba(255,255,255,0) 78%);
+}
+
 .share-btn[data-share="youtube"] {
   color: #ff0000;
 }
 
+.share-btn[data-share="youtube"]::before {
+  background: radial-gradient(circle at 50% 35%, rgba(255, 0, 0, 0.18), rgba(255,255,255,0) 72%);
+}
+
 .share-btn[data-share="copy"] {
   color: #2e5ea9;
+}
+
+.share-btn[data-share="copy"]::before {
+  background: radial-gradient(circle at 50% 35%, rgba(46, 94, 169, 0.18), rgba(255,255,255,0) 72%);
 }
 
 .sr-only {
