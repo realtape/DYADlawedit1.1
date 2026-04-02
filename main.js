@@ -323,4 +323,41 @@ function initWhatsAppResponder() {
   });
 }
 
+function initLanguageFlags() {
+  const shell = document.querySelector(".nav-shell");
+  if (!shell || document.querySelector(".lang-switch")) return;
+
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const isEn = current.endsWith("-en.html");
+
+  function esFile(file) {
+    if (!file || file === "/") return "index.html";
+    return file.replace("-en.html", ".html");
+  }
+
+  function enFile(file) {
+    if (!file || file === "/" || file === "index.html") return "index-en.html";
+    if (file.endsWith("-en.html")) return file;
+    return file.replace(".html", "-en.html");
+  }
+
+  const mxHref = esFile(current);
+  const usHref = enFile(current);
+
+  const wrap = document.createElement("div");
+  wrap.className = "lang-switch";
+  wrap.innerHTML = `
+    <a class="lang-flag ${isEn ? "" : "active"}" href="${mxHref}" aria-label="Ver sitio en español" title="Español">🇲🇽</a>
+    <a class="lang-flag ${isEn ? "active" : ""}" href="${usHref}" aria-label="View site in English" title="English">🇺🇸</a>
+  `;
+
+  const phoneBtn = shell.querySelector(".phone-btn");
+  if (phoneBtn) {
+    shell.insertBefore(wrap, phoneBtn);
+  } else {
+    shell.appendChild(wrap);
+  }
+}
+
+initLanguageFlags();
 initWhatsAppResponder();

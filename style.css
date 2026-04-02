@@ -94,6 +94,30 @@ a {
   border-bottom: 1px solid #e7b453;
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.lang-flag {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bfd0ee;
+  background: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.lang-flag.active {
+  box-shadow: 0 6px 16px rgba(22, 69, 142, 0.2);
+  border-color: #9eb8e6;
+}
+
 .phone-btn,
 .btn {
   display: inline-flex;
@@ -839,6 +863,10 @@ h1 {
 
   .phone-btn {
     display: none;
+  }
+
+  .lang-switch {
+    margin-left: auto;
   }
 
   .cards-3,
