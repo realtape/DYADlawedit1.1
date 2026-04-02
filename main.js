@@ -208,3 +208,119 @@ function attachEngagementSection() {
 }
 
 attachEngagementSection();
+
+function initWhatsAppResponder() {
+  if (document.querySelector("[data-wa-bot]")) return;
+
+  const bot = document.createElement("aside");
+  bot.className = "wa-bot";
+  bot.setAttribute("data-wa-bot", "true");
+  bot.innerHTML = `
+    <button class="wa-bot__fab" type="button" data-wa-toggle aria-label="Abrir chat de WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.3a9.7 9.7 0 0 0-8.3 14.8L2.3 21.7l4.7-1.2A9.7 9.7 0 1 0 12 2.3zm0 17.7c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-2.8.7.7-2.7-.2-.3a7.9 7.9 0 1 1 6.8 3.6zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.6-.8-2.7-1.9-3.4-3.3-.1-.2 0-.3.1-.4l.4-.4c.1-.1.2-.2.2-.3l.1-.3c0-.1-.5-1.3-.7-1.7-.2-.5-.4-.4-.5-.4h-.4c-.1 0-.3.1-.5.3-.2.2-.7.7-.7 1.6s.7 1.8.8 2c.1.1 1.4 2.2 3.5 3 .5.2.9.3 1.2.4.5.2 1 .1 1.3.1.4-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+      <span>WhatsApp</span>
+    </button>
+    <div class="wa-bot__panel" data-wa-panel hidden>
+      <div class="wa-bot__head">
+        <strong>DYADlaw Bot</strong>
+        <button class="wa-bot__close" type="button" data-wa-close aria-label="Cerrar chat">x</button>
+      </div>
+      <div class="wa-bot__body" data-wa-body>
+        <div class="wa-msg wa-msg--bot">Hola, soy el asistente de DYADlaw. Te ayudo a empezar.</div>
+      </div>
+      <div class="wa-bot__chips">
+        <button type="button" data-wa-chip="vawa">VAWA</button>
+        <button type="button" data-wa-chip="tvisa">T Visa</button>
+        <button type="button" data-wa-chip="consulta">Consulta</button>
+      </div>
+      <form class="wa-bot__composer" data-wa-form>
+        <input type="text" name="msg" placeholder="Escribe tu mensaje..." required>
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(bot);
+
+  const fab = bot.querySelector("[data-wa-toggle]");
+  const panel = bot.querySelector("[data-wa-panel]");
+  const close = bot.querySelector("[data-wa-close]");
+  const body = bot.querySelector("[data-wa-body]");
+  const form = bot.querySelector("[data-wa-form]");
+
+  function addBotMessage(text) {
+    const node = document.createElement("div");
+    node.className = "wa-msg wa-msg--bot";
+    node.textContent = text;
+    body.appendChild(node);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function addUserMessage(text) {
+    const node = document.createElement("div");
+    node.className = "wa-msg wa-msg--user";
+    node.textContent = text;
+    body.appendChild(node);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function openPanel() {
+    panel.hidden = false;
+    setTimeout(() => {
+      const input = form.querySelector("input[name='msg']");
+      if (input) input.focus();
+    }, 50);
+  }
+
+  function closePanel() {
+    panel.hidden = true;
+  }
+
+  function respond(text) {
+    const t = text.toLowerCase();
+    if (t.includes("vawa")) {
+      addBotMessage("Si tu caso es VAWA, revisamos elegibilidad, evidencia y seguridad en una consulta confidencial.");
+      return;
+    }
+    if (t.includes("t visa") || t.includes("tvisa") || t.includes("visa t")) {
+      addBotMessage("Para T Visa te ayudamos con certificacion, evidencia y permiso de trabajo paso a paso.");
+      return;
+    }
+    if (t.includes("consulta") || t.includes("cita")) {
+      addBotMessage("Perfecto. Te puedo conectar directo por WhatsApp para agendar ahora mismo.");
+      return;
+    }
+    addBotMessage("Gracias por escribir. Te conecto con nuestro equipo para ayudarte con tu caso.");
+  }
+
+  fab.addEventListener("click", () => {
+    if (panel.hidden) {
+      openPanel();
+    } else {
+      closePanel();
+    }
+  });
+
+  close.addEventListener("click", closePanel);
+
+  bot.querySelectorAll("[data-wa-chip]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const q = btn.textContent || "";
+      addUserMessage(q);
+      respond(q);
+    });
+  });
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const input = form.querySelector("input[name='msg']");
+    const msg = String(input.value || "").trim();
+    if (!msg) return;
+    addUserMessage(msg);
+    respond(msg);
+    input.value = "";
+    const wa = `https://wa.me/18588776489?text=${encodeURIComponent(msg)}`;
+    window.open(wa, "_blank", "noopener,noreferrer");
+  });
+}
+
+initWhatsAppResponder();

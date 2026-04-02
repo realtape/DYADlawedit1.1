@@ -846,3 +846,137 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.wa-bot {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+}
+
+.wa-bot__fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 0.95rem;
+  background: #22c55e;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.wa-bot__fab svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.wa-bot__panel {
+  position: absolute;
+  right: 0;
+  bottom: 56px;
+  width: min(360px, calc(100vw - 24px));
+  border: 1px solid #bfd0ee;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgba(15, 39, 79, 0.2);
+  overflow: hidden;
+}
+
+.wa-bot__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.72rem 0.9rem;
+  background: #ebfff3;
+  border-bottom: 1px solid #d7e2f4;
+  color: #14532d;
+}
+
+.wa-bot__close {
+  border: 0;
+  background: transparent;
+  color: #14532d;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.wa-bot__body {
+  padding: 0.8rem;
+  max-height: 240px;
+  overflow: auto;
+  display: grid;
+  gap: 0.45rem;
+  background: #f8fbff;
+}
+
+.wa-msg {
+  max-width: 88%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.wa-msg--bot {
+  background: #ffffff;
+  border: 1px solid #d6e3f8;
+  color: #153b77;
+}
+
+.wa-msg--user {
+  margin-left: auto;
+  background: #dcfce7;
+  color: #14532d;
+  border: 1px solid #bbf7d0;
+}
+
+.wa-bot__chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding: 0.7rem 0.8rem 0.35rem;
+}
+
+.wa-bot__chips button {
+  border: 1px solid #bfd0ee;
+  border-radius: 999px;
+  background: #fff;
+  color: #1d4e9d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+}
+
+.wa-bot__composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem 0.85rem;
+}
+
+.wa-bot__composer input {
+  border: 1px solid #c9d8ef;
+  border-radius: 10px;
+  padding: 0.55rem 0.62rem;
+  font: inherit;
+}
+
+.wa-bot__composer .btn {
+  padding: 0.55rem 0.85rem;
+}
+
+@media (max-width: 700px) {
+  .wa-bot {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .wa-bot__panel {
+    width: min(340px, calc(100vw - 20px));
+  }
+}
