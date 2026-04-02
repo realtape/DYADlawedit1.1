@@ -50,7 +50,6 @@ function attachEngagementSection() {
   const page = path.split("/").pop() || "index.html";
   if (path.endsWith("/index.html") || path.endsWith("/") || path === "/") return;
   const isBlogPage =
-    page === "blog.html" ||
     page.startsWith("blog-") ||
     page.startsWith("landing-blog-");
   if (!isBlogPage) return;
