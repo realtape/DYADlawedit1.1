@@ -278,9 +278,9 @@ function initWhatsAppResponder() {
         <div class="wa-msg wa-msg--bot">Hola, soy el asistente de DYADlaw. Te ayudo a empezar.</div>
       </div>
       <div class="wa-bot__chips">
-        <button type="button" data-wa-chip="vawa">VAWA</button>
-        <button type="button" data-wa-chip="tvisa">T Visa</button>
-        <button type="button" data-wa-chip="consulta">Consulta</button>
+        <button type="button" data-wa-chip="vawa">Tengo preguntas sobre VAWA</button>
+        <button type="button" data-wa-chip="tvisa">Quiero info sobre Visa T</button>
+        <button type="button" data-wa-chip="consulta">Agendar una consulta</button>
       </div>
       <form class="wa-bot__composer" data-wa-form>
         <input type="text" name="msg" placeholder="Escribe tu mensaje..." required>
@@ -336,6 +336,14 @@ function initWhatsAppResponder() {
     }
     if (t.includes("consulta") || t.includes("cita")) {
       addBotMessage("Perfecto. Te puedo conectar directo por WhatsApp para agendar ahora mismo.");
+      return;
+    }
+    if (t.includes("u visa") || t.includes("visa u")) {
+      addBotMessage("Para Visa U te guiamos con certificación, evidencia y tiempos estimados del caso.");
+      return;
+    }
+    if (t.includes("familiar")) {
+      addBotMessage("En Visa Familiar definimos la mejor ruta según tu parentesco y el estatus de tu familiar.");
       return;
     }
     addBotMessage("Gracias por escribir. Te conecto con nuestro equipo para ayudarte con tu caso.");
@@ -412,5 +420,100 @@ function initLanguageFlags() {
   }
 }
 
+function dedupeArticleImages() {
+  const heroImg = document.querySelector(".article .article-hero");
+  const sidebarImg = document.querySelector(".sidebar .sidebar-card .sidebar-thumb");
+  if (!heroImg || !sidebarImg) return;
+
+  const heroSrc = heroImg.currentSrc || heroImg.getAttribute("src") || "";
+  const sidebarSrc = sidebarImg.currentSrc || sidebarImg.getAttribute("src") || "";
+  if (!heroSrc || !sidebarSrc) return;
+
+  const normalize = src => {
+    try {
+      return new URL(src, window.location.href).pathname.toLowerCase();
+    } catch {
+      return String(src).toLowerCase();
+    }
+  };
+
+  if (normalize(heroSrc) === normalize(sidebarSrc)) {
+    sidebarImg.remove();
+  }
+}
+
+function enhanceFooter() {
+  const footer = document.querySelector(".site-footer");
+  if (!footer) return;
+
+  const grid = footer.querySelector(".footer-grid");
+  if (!grid) return;
+
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const isEn = current.endsWith("-en.html");
+
+  const footerNote = grid.querySelector(".footer-note");
+  if (footerNote) {
+    footerNote.textContent = isEn
+      ? "Attorney advertising. Informational content only."
+      : "Publicidad de abogado con contenido meramente informativo.";
+  }
+
+  if (!grid.querySelector("[data-footer-contact]")) {
+    const contactCol = document.createElement("div");
+    contactCol.className = "footer-col";
+    contactCol.setAttribute("data-footer-contact", "true");
+    contactCol.innerHTML = isEn
+      ? `
+        <h4>Contact</h4>
+        <p><a href="tel:+18584801077">(858) 480-1077</a></p>
+        <p>380 S Melrose Dr Ste 101<br>Vista, CA 92081</p>
+        <p><a href="https://wa.me/18588776489" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+      `
+      : `
+        <h4>Contacto</h4>
+        <p><a href="tel:+18584801077">(858) 480-1077</a></p>
+        <p>380 S Melrose Dr Ste 101<br>Vista, CA 92081</p>
+        <p><a href="https://wa.me/18588776489" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+      `;
+    grid.appendChild(contactCol);
+  }
+
+  if (!grid.querySelector("[data-footer-links]")) {
+    const linksCol = document.createElement("div");
+    linksCol.className = "footer-col";
+    linksCol.setAttribute("data-footer-links", "true");
+    linksCol.innerHTML = isEn
+      ? `
+        <h4>Quick links</h4>
+        <p><a href="index-en.html">Home</a></p>
+        <p><a href="servicios-en.html">Services</a></p>
+        <p><a href="quienes-somos-en.html">About</a></p>
+        <p><a href="blog-en.html">Blog</a></p>
+        <p><a href="contacto-en.html">Contact</a></p>
+      `
+      : `
+        <h4>Enlaces rápidos</h4>
+        <p><a href="index.html">Inicio</a></p>
+        <p><a href="servicios.html">Servicios</a></p>
+        <p><a href="quienes-somos.html">Quiénes somos</a></p>
+        <p><a href="blog.html">Blog</a></p>
+        <p><a href="contacto.html">Contacto</a></p>
+      `;
+    grid.appendChild(linksCol);
+  }
+
+  if (!footer.querySelector(".footer-meta")) {
+    const legal = document.createElement("p");
+    legal.className = "container footer-meta";
+    legal.textContent = isEn
+      ? "Attorney advertising with informational content only. This content does not constitute individual legal advice. Every case is different and outcomes depend on specific facts. Attorney Shannon Englert is responsible for this content and is an active member of the California Bar."
+      : "Publicidad de abogado con contenido meramente informativo. Este contenido no constituye asesoría legal individual. Cada caso es diferente y los resultados dependen de hechos específicos. La abogada Shannon Englert es responsable de este contenido y es miembro activo del California Bar.";
+    footer.appendChild(legal);
+  }
+}
+
+dedupeArticleImages();
+enhanceFooter();
 initLanguageFlags();
 initWhatsAppResponder();
