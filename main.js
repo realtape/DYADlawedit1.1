@@ -49,6 +49,11 @@ function attachEngagementSection() {
   const path = window.location.pathname.toLowerCase();
   const page = path.split("/").pop() || "index.html";
   if (path.endsWith("/index.html") || path.endsWith("/") || path === "/") return;
+  const isBlogPage =
+    page === "blog.html" ||
+    page.startsWith("blog-") ||
+    page.startsWith("landing-blog-");
+  if (!isBlogPage) return;
 
   const wrap = document.createElement("section");
   wrap.className = "container engagement-wrap";
