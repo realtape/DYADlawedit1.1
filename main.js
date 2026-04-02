@@ -405,10 +405,50 @@ function initLanguageFlags() {
   wrap.className = "lang-switch";
   wrap.innerHTML = `
     <a class="lang-flag ${isEn ? "" : "active"}" href="${mxHref}" aria-label="Ver sitio en español" title="Español">
-      <img src="https://flagcdn.com/w40/mx.png" alt="MX">
+      <span aria-hidden="true">🇲🇽</span>
     </a>
     <a class="lang-flag ${isEn ? "active" : ""}" href="${usHref}" aria-label="View site in English" title="English">
-      <img src="https://flagcdn.com/w40/us.png" alt="US">
+      <span aria-hidden="true">🇺🇸</span>
+    </a>
+  `;
+
+  const phoneBtn = shell.querySelector(".phone-btn");
+  if (phoneBtn) {
+    shell.insertBefore(wrap, phoneBtn);
+  } else {
+    shell.appendChild(wrap);
+  }
+}
+
+function initLanguageFlagsV2() {
+  const shell = document.querySelector(".nav-shell");
+  if (!shell || document.querySelector(".lang-switch")) return;
+
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const isEn = current.endsWith("-en.html");
+
+  const esFile = file => {
+    if (!file || file === "/") return "index.html";
+    return file.replace("-en.html", ".html");
+  };
+
+  const enFile = file => {
+    if (!file || file === "/" || file === "index.html") return "index-en.html";
+    if (file.endsWith("-en.html")) return file;
+    return file.replace(".html", "-en.html");
+  };
+
+  const mxHref = esFile(current);
+  const usHref = enFile(current);
+
+  const wrap = document.createElement("div");
+  wrap.className = "lang-switch";
+  wrap.innerHTML = `
+    <a class="lang-flag ${isEn ? "" : "active"}" href="${mxHref}" aria-label="Ver sitio en español" title="Español">
+      <span aria-hidden="true">🇲🇽</span>
+    </a>
+    <a class="lang-flag ${isEn ? "active" : ""}" href="${usHref}" aria-label="View site in English" title="English">
+      <span aria-hidden="true">🇺🇸</span>
     </a>
   `;
 
@@ -530,5 +570,5 @@ function enhanceFooter() {
 
 dedupeArticleImages();
 enhanceFooter();
-initLanguageFlags();
+initLanguageFlagsV2();
 initWhatsAppResponder();

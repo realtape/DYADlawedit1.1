@@ -200,6 +200,11 @@ a {
   display: block;
 }
 
+.lang-flag span {
+  font-size: 18px;
+  line-height: 1;
+}
+
 .lang-flag.active {
   box-shadow: 0 6px 16px rgba(22, 69, 142, 0.2);
   border-color: #9eb8e6;
